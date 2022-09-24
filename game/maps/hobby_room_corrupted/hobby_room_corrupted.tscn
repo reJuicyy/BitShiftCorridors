@@ -1,0 +1,196 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://addons/rpgh_engine/nodes/map/map.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/maps/hobby_room_corrupted/pool_table.gd" type="Script" id=2]
+[ext_resource path="res://game/maps/hobby_room_corrupted/hobby_room_corrupted.gd" type="Script" id=3]
+[ext_resource path="res://game/maps/hobby_room_corrupted/bottom_layer.png" type="Texture" id=4]
+[ext_resource path="res://game/maps/hobby_room_corrupted/top_layer.png" type="Texture" id=5]
+[ext_resource path="res://addons/rpgh_engine/nodes/trigger/trigger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/assets/pixelart/template_stand_up_animation.png" type="Texture" id=7]
+[ext_resource path="res://game/maps/hobby_room_corrupted/stand_up_animation.gd" type="Script" id=8]
+[ext_resource path="res://game/maps/hobby_room_corrupted/baseball_bats.gd" type="Script" id=9]
+[ext_resource path="res://addons/rpgh_engine/nodes/trigger/trigger.gd" type="Script" id=10]
+[ext_resource path="res://game/maps/hobby_room_corrupted/junk.gd" type="Script" id=11]
+[ext_resource path="res://game/maps/hobby_room_corrupted/shelf.gd" type="Script" id=12]
+[ext_resource path="res://game/maps/hobby_room_corrupted/vase.gd" type="Script" id=13]
+[ext_resource path="res://game/maps/hobby_room_corrupted/qwenn_enters.gd" type="Script" id=14]
+[ext_resource path="res://addons/rpgh_engine/assets/graphics/template_body_sheet.png" type="Texture" id=15]
+[ext_resource path="res://addons/rpgh_engine/ingame/humanoid/humanoid.tscn" type="PackedScene" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 12 )
+
+[sub_resource type="Animation" id=2]
+length = 0.72
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 18, 19, 20, 21, 22, 23, 24 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.72 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_player"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CameraFocus:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.72 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 16 ), Vector2( 12, 8 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 4.64
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 2.08, 2.16, 2.24, 2.32, 2.4, 2.64, 2.72, 3.28, 3.4, 3.48, 3.6, 3.72, 3.8, 3.92, 4.04, 4.16, 4.28, 4.4, 4.52 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17, 14, 15, 14, 17, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraFocus:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.84, 2, 2.48, 2.64, 2.8, 3.28, 3.72, 3.96, 4.24, 4.68 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 24, 24 ), Vector2( 23.9819, 22.2182 ), Vector2( 24, 24 ), Vector2( 20, 24 ), Vector2( 20, 24 ), Vector2( 18, 24 ), Vector2( 18, 24 ), Vector2( 16, 16 ), Vector2( 16.114, 15.741 ), Vector2( 15.505, 16.486 ), Vector2( 16, 16 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 24, 12 )
+
+[node name="HobbyRoomCorrupted" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+top_layer = ExtResource( 5 )
+bottom_layer = ExtResource( 4 )
+
+[node name="MapCollision" type="StaticBody2D" parent="." index="0"]
+visible = false
+position = Vector2( 96, 72 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="WallCollision" type="CollisionPolygon2D" parent="MapCollision" index="0"]
+polygon = PoolVector2Array( -72, 192, -72, 24, -48, 24, -48, 0, 72, 0, 72, 24, 120, 24, 120, 0, 216, 0, 216, 192, -72, 192, -96, 216, 240, 216, 240, -24, -96, -24, -96, 216 )
+
+[node name="LiftUpCollision" type="CollisionShape2D" parent="MapCollision" index="1"]
+position = Vector2( 60, 84 )
+shape = SubResource( 1 )
+
+[node name="StandUpAnimation" type="Node" parent="." index="1"]
+script = ExtResource( 8 )
+auto_start = true
+
+[node name="Sprite" type="Sprite" parent="StandUpAnimation" index="0"]
+position = Vector2( 232, 128 )
+texture = ExtResource( 7 )
+centered = false
+offset = Vector2( -3, -13 )
+vframes = 5
+hframes = 5
+
+[node name="CameraFocus" type="Position2D" parent="StandUpAnimation/Sprite" index="0"]
+position = Vector2( 24, 24 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StandUpAnimation/Sprite" index="1"]
+anims/StandUp = SubResource( 2 )
+anims/WakeUpShakeHead = SubResource( 3 )
+
+[node name="PoolTable" type="Node" parent="." index="2"]
+script = ExtResource( 2 )
+
+[node name="Trigger" parent="PoolTable" index="0" instance=ExtResource( 6 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoolTable/Trigger" index="0"]
+polygon = PoolVector2Array( 48, 176, 88, 176, 88, 208, 96, 208, 96, 224, 48, 224 )
+
+[node name="BaseballBats" type="Node" parent="." index="3"]
+script = ExtResource( 9 )
+
+[node name="Trigger" type="Node" parent="BaseballBats" index="0"]
+script = ExtResource( 10 )
+is_passable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseballBats/Trigger" index="0"]
+position = Vector2( 88, 60 )
+shape = SubResource( 4 )
+
+[node name="Junk" type="Node" parent="." index="4"]
+script = ExtResource( 11 )
+
+[node name="Trigger" type="Node" parent="Junk" index="0"]
+script = ExtResource( 10 )
+
+[node name="Collision" type="CollisionPolygon2D" parent="Junk/Trigger" index="0"]
+polygon = PoolVector2Array( 224, 232, 264, 232, 264, 216, 296, 216, 296, 184, 312, 184, 312, 264, 224, 264 )
+
+[node name="Shelf" type="Node" parent="." index="5"]
+script = ExtResource( 12 )
+
+[node name="Trigger" type="Node" parent="Shelf" index="0"]
+script = ExtResource( 10 )
+
+[node name="Collision" type="CollisionShape2D" parent="Shelf/Trigger" index="0"]
+position = Vector2( 288, 84 )
+shape = SubResource( 5 )
+
+[node name="Vase" type="Node" parent="." index="6"]
+script = ExtResource( 13 )
+
+[node name="Trigger" type="Node" parent="Vase" index="0"]
+script = ExtResource( 10 )
+
+[node name="LiftUpCollision2" type="CollisionShape2D" parent="Vase/Trigger" index="0"]
+position = Vector2( 156, 84 )
+shape = SubResource( 1 )
+
+[node name="QwennEnters" type="Node" parent="." index="7"]
+script = ExtResource( 14 )
+
+[node name="Qwenn" type="Sprite" parent="QwennEnters" index="0"]
+visible = false
+position = Vector2( 240, 88 )
+texture = ExtResource( 15 )
+vframes = 8
+hframes = 5
+frame = 25
+
+[node name="Humanoid" parent="." index="8" instance=ExtResource( 16 )]
+position = Vector2( 185, 132 )

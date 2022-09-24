@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/rpgh_engine/system/init.tscn" type="PackedScene" id=1]
+
+[node name="Init" instance=ExtResource( 1 )]
+initial_map = "res://game/maps/hobby_room_corrupted/hobby_room_corrupted.tscn"
